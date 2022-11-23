@@ -3,10 +3,25 @@ import React from "react";
 import version from "Config/versions.json";
 
 import style from "./title.scss";
+import { motion } from "framer-motion";
+import { opacity } from "html2canvas/dist/types/css/property-descriptors/opacity";
 
 const Title: React.FC = () => {
+
+    const init = {
+        opacity:0,
+        y:50
+    }
+    const animaiton = {
+        opacity:1,
+        y:0,
+        transition:{
+            duration:0.2
+        }
+    }
+
     return (
-        <div className={style.title}>
+        <motion.div className={style.title} initial={init} animate={animaiton}>
             <div className={style.titleText}>
                 <h1>Feature Me</h1>
                 <p>Click to start</p>
@@ -18,7 +33,7 @@ const Title: React.FC = () => {
                     ©{new Date().getFullYear()} Feature Me All rights reserved.
                 </p>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
