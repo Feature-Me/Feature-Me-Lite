@@ -30,7 +30,6 @@ const io = new socketIo.Server(server, {
     auth: false
 });
 const user = io.of("/user");
-const chat = io.of("/chat");
 const multiPlayer = io.of("/multiplayer");
 user.on("connection", (socket) => {
     socket.on("login", (data) => {
@@ -45,17 +44,10 @@ user.on("connection", (socket) => {
         socket.emit("loggedIn", data);
     });
 });
-chat.on("connection", (socket) => {
-    socket.on("sendMessage", (message) => {
-        chat.emit("receiveMessage", message);
-    });
-});
 server.listen(port, () => {
     console.log(`Server listening on port ${port}`);
     console.log(`Node version:${process.version}`);
     console.log(`PID:${process.pid}`);
-    console.log(`${process.env.NODE_ENV} mode,bot:${process.env.USE_BOT}`);
-    //if(process.env.NODE_ENV=="production") login();
 });
 app.use(express.json());
 app.use("/scripts", express.static(scriptsdir));
@@ -73,30 +65,8 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(viewsdir, "index.html"));
 });
 app.get("/update/map", (req, res) => {
-    const modelUrl = "/resources/background/";
-    const behaviorUrl = "/resources/behavior/";
     const musicUrl = "/resources/music/";
-    const model = {};
-    const behavior = {};
     const music = {};
-    fs.readdirSync(path.join(resourcesdir, "Backgrounds")).forEach(file => {
-        if (file.endsWith(".fmbg")) {
-            model[file.replace(".fmbg", "")] = {
-                url: modelUrl + file,
-                size: fs.statSync(path.join(resourcesdir, "Backgrounds", file)).size,
-                hash: crypto.createHash("sha256").update(fs.readFileSync(path.join(resourcesdir, "Backgrounds", file))).digest("hex")
-            };
-        }
-    });
-    fs.readdirSync(path.join(resourcesdir, "Behaviors")).forEach(file => {
-        if (file.endsWith(".fmbh")) {
-            behavior[file.replace(".fmbh", "")] = {
-                url: behaviorUrl + file,
-                size: fs.statSync(path.join(resourcesdir, "Behaviors", file)).size,
-                hash: crypto.createHash("sha256").update(fs.readFileSync(path.join(resourcesdir, "Behaviors", file))).digest("hex")
-            };
-        }
-    });
     fs.readdirSync(path.join(resourcesdir, "MusicResources")).forEach(file => {
         if (file.endsWith(".fmmc")) {
             music[file.replace(".fmmc", "")] = {
@@ -106,11 +76,7 @@ app.get("/update/map", (req, res) => {
             };
         }
     });
-    res.json({
-        background: model,
-        behavior: behavior,
-        music: music
-    });
+    res.json(music);
 });
 app.get("/health", (req, res) => {
     res.status(200).end("Server online.");
