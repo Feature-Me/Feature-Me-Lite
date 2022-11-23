@@ -1,5 +1,4 @@
 {
     "DBName": "ResourcesDatabase",
-    "musicStore": "MusicDB",
-    "replayStore": "ReplayDB"
+    "musicStore": "MusicDB"
 }
