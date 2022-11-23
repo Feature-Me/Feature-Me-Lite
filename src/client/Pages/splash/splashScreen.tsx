@@ -82,6 +82,12 @@ const SplashScreen: React.FC = () => {
     //add emitter to the proton
     proton.addEmitter(emitter);
 
+    async function exit(){
+        containerAnimationController.start(fadeOut);
+        await sleep(1000);
+        navigate("../title")
+    }
+
     React.useEffect(() => {
         let rejectFunc:Function;
         new Promise<void>(async (resolve, reject) => {
@@ -136,7 +142,7 @@ const SplashScreen: React.FC = () => {
                     <h1><TranslateText content="splashScreen.caution.title" /></h1>
                     <p><TranslateText content="splashScreen.caution.description" /></p>
                 </motion.div>
-                <div className={style.skip} ref={skipRef} onClick={() => navigate("../title")}>
+                <div className={style.skip} ref={skipRef} onClick={exit}>
                     <h2>skip</h2> <div className={style.iconWrapper}><BsChevronDoubleRight /></div>
                 </div>
             </div>
