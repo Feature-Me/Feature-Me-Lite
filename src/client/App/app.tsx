@@ -4,9 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import { RecoilRoot, useSetRecoilState } from "recoil";
 import { BrowserRouter, Route } from 'react-router-dom';
-import { ToastContainer, Slide } from 'react-toastify';
-import { Howl, Howler } from 'howler';
-//import "i18n/i18n";
+import "i18n/i18n";
 
 
 import version from "Config/versions.json";
@@ -16,20 +14,26 @@ import style from './app.scss';
 
 import { cloneDeep } from 'lodash';
 import ErrorBoundary from 'Components/errorBoundary/errorBoundary';
+import PageRouter from 'Routs/router';
+import Background from 'Components/Background/background';
+import initLocalStorage from 'Utils/Storage/LocalStorage/initLocalStorage';
+import initDatabase from 'Utils/Storage/database/initDatabase';
 
 function App(): JSX.Element {
     const [translation, i18n] = useTranslation();
-/* 
+
     React.useEffect(() => {
         const environment = JSON.parse(localStorage.getItem("environment")!);
         environment.language = i18n.language;
         localStorage.setItem("environment", JSON.stringify(environment));
-    }, [i18n.language]); */
+    }, [i18n.language]);
 
 
     return (
         <BrowserRouter>
             <div className={style.app}>
+                <Background />
+                <PageRouter />
             </div>
         </BrowserRouter>
     )
@@ -56,6 +60,8 @@ function render(): void {
 }); */
 
 function init(): void {
+    initLocalStorage();
+    initDatabase()
     render();
 
     console.log("Feature Me Lite initialized. the Game is Ready!");
