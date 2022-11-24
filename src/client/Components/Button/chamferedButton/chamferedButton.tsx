@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "./chamferedButton.scss";
 
-type buttonPropsType = JSX.IntrinsicElements["button"] & {
+interface buttonPropsType extends React.InsHTMLAttributes<HTMLButtonElement> {
     accentColor?: string
 }
 
