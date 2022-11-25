@@ -2,7 +2,7 @@ import React from 'react';
 import * as THREE from "three";
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
-import { RecoilRoot, useSetRecoilState } from "recoil";
+import { RecoilRoot} from "recoil";
 import { BrowserRouter, Route } from 'react-router-dom';
 import "i18n/i18n";
 
