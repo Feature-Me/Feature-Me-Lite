@@ -1,0 +1,29 @@
+@import "../../Assets/mixin.scss";
+
+.loadPage {
+    height: 100%;
+    width: 100%;
+    @include blur-background;
+
+    .modal {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .inner {
+            background-color: $floatBackground;
+            border: 1px solid $backgroundSubColor;
+            border-radius: 8px;
+            min-width: 40%;
+            overflow: hidden;
+            .content{
+                text-align: center;
+            }
+        }
+    }
+}
