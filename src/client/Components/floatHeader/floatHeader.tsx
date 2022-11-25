@@ -19,7 +19,7 @@ const FloatHeader: React.FC<headerProps> = (props) => {
     }
 
     return (
-        <header {...props} className={style.header}>
+        <header className={style.header}>
             <div className={style.iconWrapper} onClick={backFunc}>
                 <MdChevronLeft className={style.icon} />
             </div>
