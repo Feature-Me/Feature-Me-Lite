@@ -8,7 +8,9 @@ import GlitchImage from "Components/glitchImage/glitchImage";
 const Background: React.FC<{ onload?: Function }> = (props) => {
 
     return (
-        <GlitchImage src={backgroundImage} className={style.backgroundimg} />
+        <div className={style.backgroundimg}>
+            <GlitchImage src={backgroundImage} />
+        </div>
     )
 }
 
