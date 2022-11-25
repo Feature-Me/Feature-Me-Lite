@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import { RecoilRoot} from "recoil";
-import { BrowserRouter, Route } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import "i18n/i18n";
 
 
@@ -30,12 +30,12 @@ function App(): JSX.Element {
 
 
     return (
-        <BrowserRouter>
+        <MemoryRouter>
             <div className={style.app}>
                 <Background />
                 <PageRouter />
             </div>
-        </BrowserRouter>
+        </MemoryRouter>
     )
 }
 
