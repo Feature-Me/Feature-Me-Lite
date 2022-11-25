@@ -6,14 +6,14 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 15% 1fr auto;
 
     .titleText {
         height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-direction: column;
         text-shadow: 2px 2px $blackTextColor;
         font-size: 1.5em;
