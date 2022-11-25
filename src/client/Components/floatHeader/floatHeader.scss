@@ -1,0 +1,47 @@
+@import "../../Assets/mixin.scss";
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 4px;
+    height: 48px;
+    width: 160px;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: 1fr;
+    border-bottom: 2px solid $borderColor;
+    gap: 8px;
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 6px;
+        height: 2px;
+        width: 100%;
+        border-bottom: 2px solid $grayBackground;
+    }
+
+    h2{
+        line-height: 40px;
+    }
+
+}
+
+.iconWrapper {
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: $inputBackgroundColor;
+    box-shadow: 4px 4px 0 $grayBackground;
+    transition: 0.2s;
+    &:hover{
+        background-color: $accentColor;
+        box-shadow: 4px 4px 0 $inputBackgroundColor;
+    }
+    &:active{
+        filter: brightness(0.8);
+    }
+}
