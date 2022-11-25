@@ -45,7 +45,7 @@ const Title: React.FC = () => {
         audio.play();
         animationController.start(exit)
         await sleep(1000);
-        navigate("../load");
+        navigate("/load");
 
     }
 

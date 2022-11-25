@@ -107,7 +107,7 @@ const SplashScreen: React.FC = () => {
             sessionStorage.setItem("splashScreen", "true");
             containerAnimationController.start(fadeOut);
             await sleep(1000);
-            navigate("../title");
+            navigate("/title");
             resolve();
         });
         return ()=> {

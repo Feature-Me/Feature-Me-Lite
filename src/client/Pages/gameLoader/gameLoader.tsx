@@ -63,7 +63,7 @@ const GameLoader: React.FC = () => {
                 await sleep(1500);
                 animationController.start(fadeOut);
                 await sleep(500);
-                navigate("./home");
+                navigate("/home");
             })
         }).catch(error => {
             console.error(error);
