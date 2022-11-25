@@ -8,6 +8,8 @@ import { parseMusicCollection } from "Utils/Storage/installResources/musicResour
 import style from "./gameLoader.scss";
 import { motion, useAnimation } from "framer-motion";
 import sleep from "Utils/sleep/sleep";
+import { useRecoilState } from "recoil";
+import gameLoadState from "State/gameLoadState";
 
 type versionMap = {
     [key: string]: { url: string, size: number, hash: string }
@@ -21,6 +23,7 @@ const GameLoader: React.FC = () => {
     const [downloadedCount, setDownloadedCount] = React.useState(0);
     const [downloadSize, setDownloadSize] = React.useState(0);
     const [downloadedSize, setDownloadedSize] = React.useState(0);
+    const [gameLoader,setGameLoader] = useRecoilState(gameLoadState);
 
     const animationController = useAnimation();
     const init = { opacity: 0 };
@@ -38,8 +41,11 @@ const GameLoader: React.FC = () => {
     }
 
     React.useEffect(() => {
-        animationController.start(fadeIn);
-        fetchUpdate();
+        if(!gameLoader){
+            animationController.start(fadeIn);
+            fetchUpdate();
+        }else navigate("/home");
+        
     }, [])
 
     function fetchUpdate() {
@@ -63,6 +69,7 @@ const GameLoader: React.FC = () => {
                 await sleep(1500);
                 animationController.start(fadeOut);
                 await sleep(500);
+                setGameLoader(true)
                 navigate("/home");
             })
         }).catch(error => {
